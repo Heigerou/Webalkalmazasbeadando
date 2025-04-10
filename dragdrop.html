@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 API - Minta oldal</title>
+=======
+    <title>Drag & drop</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <script src="js/menu.js" defer></script>
+    <link rel="stylesheet" href="css/Style.css">
+    <style>
+        .game-board {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px;
+        }
+
+        .piece, .slot {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .piece {
+            cursor: grab;
+            background-color: lightgray;
+        }
+
+        .slot {
+            background-color: #f0f0f0;
+        }
+
+        .slot.over {
+            border-color: green;
+            background-color: #e0ffe0;
+        }
+
+        .matched {
+            background-color: lightgreen !important;
+            border-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html">Chart</a></li>
+            <li><a href="ajax.html">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html">Web Storage</a></li>
+                    <li><a href="webworkers.html">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html"class="active">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section>
+            <h1 style="text-align:center;">🧩 Puzzle Drag & Drop</h1>
+
+            <div class="game-board">
+                <!-- Kirakó elemek -->
+                <div class="piece" id="red" draggable="true" style="background-color: red;">Piros</div>
+                <div class="piece" id="blue" draggable="true" style="background-color: blue;">Kék</div>
+                <div class="piece" id="yellow" draggable="true" style="background-color: gold;">Sárga</div>
+            </div>
+        
+            <div class="game-board">
+                <!-- Cél mezők -->
+                <div class="slot" data-color="red">?</div>
+                <div class="slot" data-color="blue">?</div>
+                <div class="slot" data-color="yellow">?</div>
+            </div>
+        </section>
+    </main>
+    <script>
+        const pieces = document.querySelectorAll(".piece");
+        const slots = document.querySelectorAll(".slot");
+
+        pieces.forEach(piece => {
+            piece.addEventListener("dragstart", e => {
+                e.dataTransfer.setData("text/plain", e.target.id);
+            });
+        });
+
+        slots.forEach(slot => {
+            slot.addEventListener("dragover", e => {
+                e.preventDefault();
+                slot.classList.add("over");
+            });
+
+            slot.addEventListener("dragleave", () => {
+                slot.classList.remove("over");
+            });
+
+            slot.addEventListener("drop", e => {
+                e.preventDefault();
+                slot.classList.remove("over");
+
+                const droppedId = e.dataTransfer.getData("text/plain");
+                const dragged = document.getElementById(droppedId);
+                const targetColor = slot.getAttribute("data-color");
+
+                if (droppedId === targetColor) {
+                    slot.textContent = dragged.textContent;
+                    slot.classList.add("matched");
+                    dragged.remove();
+                } else {
+                    alert("Nem jó helyre tetted! 😅");
+                }
+            });
+        });
+    </script>
+    <footer>
+        <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+</body>
+</html>

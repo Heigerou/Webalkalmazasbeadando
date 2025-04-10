@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG – Analóg óra példa</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <style>
+        svg {
+            display: block;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html">Chart</a></li>
+            <li><a href="ajax.html">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html">Web Storage</a></li>
+                    <li><a href="webworkers.html">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html" class="active">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h1 style="text-align:center;">⏱️ SVG Analóg óra</h1>
+
+
+            <svg width="200" height="200" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" stroke="black" stroke-width="3" fill="white" />
+                
+                <line id="secondHand" x1="50" y1="50" x2="50" y2="10" stroke="red" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </section>
+    </main>
+
+    <script>
+        const hand = document.getElementById("secondHand");
+
+        function updateClock() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const angle = seconds * 6;
+            hand.setAttribute("transform", `rotate(${angle} 50 50)`);
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+    <footer>
+        <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+</body>
+</html>

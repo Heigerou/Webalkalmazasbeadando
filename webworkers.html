@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webworkers</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        #counter { font-size: 48px; margin: 20px; }
+      </style>
+    <script src="js/menu.js" defer></script>
+    <script src="js/worker.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html">Chart</a></li>
+            <li><a href="ajax.html">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html">Web Storage</a></li>
+                    <li><a href="webworkers.html"class="active">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h1>🔁 Web Worker Számláló</h1>
+            <div id="counter">0</div>
+            <button onclick="startCounter()">▶️ Indítás</button>
+            <button onclick="stopCounter()">⏹️ Leállítás</button>
+        </section>
+    </main>
+    <script>
+    let worker;
+
+function startCounter() {
+  if (typeof(Worker) !== "undefined") {
+    if (!worker) {
+      worker = new Worker("js/worker.js");
+      worker.onmessage = function(e) {
+        document.getElementById("counter").innerText = e.data;
+      };
+    }
+  } else {
+    alert("A böngésződ nem támogatja a Web Workereket.");
+  }
+}
+
+function stopCounter() {
+  if (worker) {
+    worker.terminate();
+    worker = null;
+  }
+}
+    </script>
+    <footer>
+      <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+</body>
+</html>

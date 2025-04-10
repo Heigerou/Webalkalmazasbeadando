@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webstorage</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <script src="js/menu.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html">Chart</a></li>
+            <li><a href="ajax.html">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html"class="active">Web Storage</a></li>
+                    <li><a href="webworkers.html">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section>
+        <h2>📌 Jegyzetek</h2>
+        <textarea id="noteInput" placeholder="Írj egy jegyzetet..."></textarea>
+        <br>
+        <button onclick="addNote()">➕ Hozzáadás</button>
+        <button onclick="clearNotes()">🗑️ Összes törlése</button>
+
+        <h3>📋 Elmentett jegyzetek:</h3>
+        <ul id="noteList"></ul>
+        </section>
+    </main>
+    <script>
+        const noteInput = document.getElementById("noteInput");
+        const noteList = document.getElementById("noteList");
+
+        function loadNotes() {
+            const notes = JSON.parse(localStorage.getItem("notes")) || [];
+            noteList.innerHTML = "";
+            notes.forEach((note, index) => {
+                const li = document.createElement("li");
+                li.textContent = note;
+                const delBtn = document.createElement("button");
+                delBtn.textContent = "❌";
+                delBtn.style.marginLeft = "10px";
+                delBtn.onclick = () => deleteNote(index);
+                li.appendChild(delBtn);
+                noteList.appendChild(li);
+            });
+        }
+
+        function addNote() {
+            const text = noteInput.value.trim();
+            if (text) {
+                const notes = JSON.parse(localStorage.getItem("notes")) || [];
+                notes.push(text);
+                localStorage.setItem("notes", JSON.stringify(notes));
+                noteInput.value = "";
+                loadNotes();
+            }
+        }
+
+        function deleteNote(index) {
+            const notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.splice(index, 1);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            loadNotes();
+        }
+
+        function clearNotes() {
+            if (confirm("Biztos törlöd az összes jegyzetet?")) {
+                localStorage.removeItem("notes");
+                loadNotes();
+            }
+        }
+
+        window.onload = loadNotes;
+    </script>
+    <footer>
+        <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+</body>
+</html>
