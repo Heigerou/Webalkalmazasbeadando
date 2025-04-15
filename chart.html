@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Diagram</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html" class="active">Chart</a></li>
+            <li><a href="ajax.html">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html">Web Storage</a></li>
+                    <li><a href="webworkers.html">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>   
+
+    <section>
+        <h1>📊 Táblázat és Diagram</h1>
+
+        <table id="chartTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>One</th>
+                    <th>Two</th>
+                    <th>Three</th>
+                    <th>Four</th>
+                    <th>Five</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr onclick="updateChart(this)">
+                    <td>1</td><td>5</td><td>15</td><td>7</td><td>20</td><td>12</td>
+                </tr>
+                <tr onclick="updateChart(this)">
+                    <td>2</td><td>14</td><td>9</td><td>22</td><td>6</td><td>18</td>
+                </tr>
+                <tr onclick="updateChart(this)">
+                    <td>3</td><td>8</td><td>12</td><td>5</td><td>25</td><td>10</td>
+                </tr>
+                <tr onclick="updateChart(this)">
+                    <td>4</td><td>20</td><td>5</td><td>15</td><td>9</td><td>14</td>
+                </tr>
+                <tr onclick="updateChart(this)">
+                    <td>5</td><td>11</td><td>18</td><td>6</td><td>14</td><td>22</td>
+                </tr>
+            </tbody>
+        </table>        
+
+        <div id="chartContainer">
+            <canvas id="myChart"></canvas>
+        </div>        
+    </section>
+
+    <footer>
+        <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+
+    <script src="js/chart.js"></script>
+</body>
+</html>
