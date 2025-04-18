@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX CRUD</title>
+    <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+    <header>
+        <h1 class="header">Web-programozás-1 Előadás Házi feladat</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="tablazat.html">Táblázat</a></li>
+            <li><a href="chart.html">Chart</a></li>
+            <li><a href="ajax.html" class="active">AJAX Menü</a></li>
+            <li><a href="oojs.html">OOJS Menü</a></li>
+            <li><a href="react.html">React Menü</a></li>
+            <li class="dropdown">
+                <a href="#">HTML5 API ▼</a>
+                <ul class="dropdown-content">
+                    <li><a href="webstorage.html">Web Storage</a></li>
+                    <li><a href="webworkers.html">Web Workers</a></li>
+                    <li><a href="sse.html">Server-Sent Events</a></li>
+                    <li><a href="geolocation.html">Geolocation</a></li>
+                    <li><a href="dragdrop.html">Drag & Drop</a></li>
+                    <li><a href="canvas.html">Canvas</a></li>
+                    <li><a href="svg.html">SVG</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <section class="section-container">
+        <h2>📊 Adatok listázása</h2>
+        <table id="ajaxtable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Név</th>
+                    <th>Magasság (cm)</th>
+                    <th>Súly (kg)</th>
+                    <th>Műveletek</th>
+                </tr>
+            </thead>
+        </table>
+        <h2>➕ Új adat hozzáadása</h2>
+        <form>
+            <div class="form-group">
+                <label for="createName">Név:</label>
+                <input type="text" id="createName" placeholder="Max. 30 karakter">
+            </div>
+            <div class="form-group">
+                <label for="createHeight">Magasság:</label>
+                <input type="number" id="createHeight" placeholder="cm">
+            </div>
+            <div class="form-group">
+                <label for="createWeight">Súly:</label>
+                <input type="number" id="createWeight" placeholder="kg">
+            </div>
+            <button onclick="createData()">Létrehozás</button>
+        </form>
+    </section>
+    
+    <section class="section-container">
+        <h2>✏️ Adat módosítása</h2>
+        <form>
+            <div class="form-group">
+                <label for="updateId">ID:</label>
+                <input type="number" id="updateId" placeholder="Módosítani kívánt ID">
+                <button type="button" onclick="getDataForId()">🔍 Lekérdezés</button>
+            </div>
+            <div class="form-group">
+                <label for="updateName">Név:</label>
+                <input type="text" id="updateName">
+            </div>
+            <div class="form-group">
+                <label for="updateHeight">Magasság:</label>
+                <input type="number" id="updateHeight">
+            </div>
+            <div class="form-group">
+                <label for="updateWeight">Súly:</label>
+                <input type="number" id="updateWeight">
+            </div>
+            <button type="button" onclick="updateData()">Módosítás</button>
+        </form>
+    </section>
+       
+    <footer>
+        <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+    </footer>
+
+    <script src="js/ajax.js"></script>
+</body>
+</html>
