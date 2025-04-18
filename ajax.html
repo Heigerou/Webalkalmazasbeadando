@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX CRUD</title>
+  <link rel="stylesheet" href="css/Style.css">
+</head>
+<body>
+  <header>
+    <h1 class="header">AJAX CRUD példa</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="tablazat.html">Táblázat</a></li>
+      <li><a href="chart.html">Chart</a></li>
+      <li><a href="ajax.html" class="active">AJAX Menü</a></li>
+      <li><a href="oojs.html">OOJS Menü</a></li>
+      <li><a href="react.html">React Menü</a></li>
+      <li class="dropdown">
+        <a href="#">HTML5 API ▼</a>
+        <ul class="dropdown-content">
+          <li><a href="webstorage.html">Web Storage</a></li>
+          <li><a href="webworkers.html">Web Workers</a></li>
+          <li><a href="sse.html">Server-Sent Events</a></li>
+          <li><a href="geolocation.html">Geolocation</a></li>
+          <li><a href="dragdrop.html">Drag & Drop</a></li>
+          <li><a href="canvas.html">Canvas</a></li>
+          <li><a href="svg.html">SVG</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="section-container">
+    <h2>📊 Adatok listázása</h2>
+    <table id="ajaxtable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Név</th>
+          <th>Magasság (cm)</th>
+          <th>Súly (kg)</th>
+          <th>Műveletek</th>
+        </tr>
+      </thead>
+    </table>
+  </section>
+
+  <section class="section-container">
+    <h2>➕ Új adat hozzáadása</h2>
+    <form>
+      <input type="text" id="createName" placeholder="Név">
+      <input type="number" id="createHeight" placeholder="Magasság">
+      <input type="number" id="createWeight" placeholder="Súly">
+      <button type="button" onclick="create()">Létrehozás</button>
+    </form>
+  </section>
+
+  <section class="section-container">
+    <h2>✏️ Adat módosítása</h2>
+    <form>
+      <input type="number" id="updateId" placeholder="ID">
+      <button type="button" onclick="getDataForId()">🔍 Lekérdezés</button><br>
+      <input type="text" id="updateName" placeholder="Név">
+      <input type="number" id="updateHeight" placeholder="Magasság">
+      <input type="number" id="updateWeight" placeholder="Súly">
+      <button type="button" onclick="update()">Módosítás</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>Készítette: Szokolai János Dániel & Pécsy Szabolcs | HI20V9 & EUM17E</p>
+  </footer>
+
+  <script src="js/ajax.js"></script>
+</body>
+</html>
