@@ -1,0 +1,48 @@
+.tictactoe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  color: #00d8ff;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.square {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  background-color: white;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
